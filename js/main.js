@@ -27,5 +27,26 @@ const gameBoard = (function() {
   const mark = 'X'; // TODO: delete
   // const mark = 'O'; // TODO: delete
 
+  // 2 - Create players
+  // This will create two objects which will be assigned to playerOne and playerTwo and contain the player name, selected mark, score and selections
+
+  // create player one
+  function createPlayerOne(player, mark, playerOneSelection) {
+    return {
+      player: player,
+      mark: mark,
+      playerOneSelection: playerOneSelection
+    }
+  }
+  
+  // create player two
+  function createPlayerTwo(player, mark, playerTwoSelection) {
+    return {
+      player: player,
+      mark: mark,
+      playerTwoSelection: playerTwoSelection
+    }
+  }
+
 
 })()
