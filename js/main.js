@@ -60,19 +60,21 @@ const gameBoard = (function() {
     const totalSelection = [...playerOneSelection, ...playerTwoSelection];
     const playerA = 'You';
     const playerB = 'CPU';
-    
+
     if (mark === 'X') {
+      const otherMark = 'O'; // create a variable to hold the other mark
       const playerOne =  createPlayerOne(playerA, mark, playerOneSelection);
       const roundOne = createPlayerOneRound(1, playerOne);
       console.log(roundOne); // TODO: delete
       console.log(playerOne); // TODO: delete
-      const playerTwo =  createPlayerTwo(playerB, 'O', playerTwoSelection);
+      const playerTwo =  createPlayerTwo(playerB, otherMark, playerTwoSelection);
       console.log(playerTwo); // TODO: delete
       updateRemainingSelections(totalSelection);
-    } 
-
+    }
+     
     else if (mark === 'O') {
-      const playerOne =  createPlayerOne(playerB, 'X', playerOneSelection);
+      const otherMark = 'X';
+      const playerOne =  createPlayerOne(playerB, otherMark, playerOneSelection);
       const roundOne = createPlayerOneRound(1, playerOne);
       updateRemainingSelections(totalSelection);
       console.log(roundOne); // TODO: delete
