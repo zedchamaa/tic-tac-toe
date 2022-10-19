@@ -81,4 +81,14 @@ const gameBoard = (function() {
     }
   }
 
+  // 4 - Show who's turn it is now
+  function displayTurn(mark) {
+    if (mark === 'X') {
+      // display X on the UI
+    }
+    else {
+      // display Y on the UI
+    }
+  }
+
 })()
