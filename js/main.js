@@ -21,7 +21,11 @@ const gameBoard = (function() {
     remainingSelections: []
     };
 
-  
+  // 1 - Pick playerOne's mark (X or O) - X always goes first
+  // add click event listener to the X and 0 buttons to see which one has been selected by playerOne (you)
+
+  const mark = 'X'; // TODO: delete
+  // const mark = 'O'; // TODO: delete
 
 
-  })()
+})()
