@@ -119,4 +119,16 @@ const gameBoard = (function() {
     console.log(remainingSelections); // TODO: delete
   }
 
+  // 7 - When board.length >= 5, check for winners/losers/tie
+
+  // 8 - Update scores
+
+  // 9 - Display notifications
+
+  // 10 - If playerOne wins, quit game or go to next round
+
+  // 11 - If playerOne loses, quot game or go to next round
+
+  // 12 - Restart game or cancel at anytime when refresh symbol is clicked
+
 })()
