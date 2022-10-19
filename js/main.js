@@ -106,4 +106,17 @@ const gameBoard = (function() {
     }
   }
 
+  // 6 - Update selection with available spots
+  function updateRemainingSelections(totalSelection) {
+
+    console.log(totalSelection); // TODO: delete
+
+    const board = gameBoard.board;
+    console.log(board); // TODO: delete
+    
+    const remainingSelections = board.filter(n => !totalSelection.includes(n));
+    
+    console.log(remainingSelections); // TODO: delete
+  }
+
 })()
