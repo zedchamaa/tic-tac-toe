@@ -55,28 +55,29 @@ const gameBoard = (function() {
   displayTurn(mark); // show who's turn it is on the UI
 
   function startGameVsCPu(mark) {
-
-    let playerOneSelection = [1];
-    let playerTwoSelection = [3];
-    let totalSelection = [...playerOneSelection, ...playerTwoSelection];
+    const playerOneSelection = [1];
+    const playerTwoSelection = [3];
+    const totalSelection = [...playerOneSelection, ...playerTwoSelection];
+    const playerA = 'You';
+    const playerB = 'CPU';
     
     if (mark === 'X') {
-      const playerOne =  createPlayerOne('You', mark, playerOneSelection);
+      const playerOne =  createPlayerOne(playerA, mark, playerOneSelection);
       const roundOne = createPlayerOneRound(1, playerOne);
       console.log(roundOne); // TODO: delete
       console.log(playerOne); // TODO: delete
-      const playerTwo =  createPlayerTwo('CPU', 'O', playerTwoSelection);
+      const playerTwo =  createPlayerTwo(playerB, 'O', playerTwoSelection);
       console.log(playerTwo); // TODO: delete
       updateRemainingSelections(totalSelection);
     } 
 
     else if (mark === 'O') {
-      const playerOne =  createPlayerOne('CPU', 'X', playerOneSelection);
+      const playerOne =  createPlayerOne(playerB, 'X', playerOneSelection);
       const roundOne = createPlayerOneRound(1, playerOne);
       updateRemainingSelections(totalSelection);
       console.log(roundOne); // TODO: delete
       console.log(playerOne); // TODO: delete
-      const playerTwo =  createPlayerTwo('You', mark, playerTwoSelection);
+      const playerTwo =  createPlayerTwo(playerA, mark, playerTwoSelection);
       console.log(playerTwo); // TODO: delete
     }
   }
