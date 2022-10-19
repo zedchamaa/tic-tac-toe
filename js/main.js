@@ -48,5 +48,37 @@ const gameBoard = (function() {
     }
   }
 
+  // 3 - Start new game versus CPU
+  // add click event listener to the "New Game (VS CPU)" button to create playerOne and update its values
+
+  startGameVsCPu(mark);
+  displayTurn(mark); // show who's turn it is on the UI
+
+  function startGameVsCPu(mark) {
+
+    let playerOneSelection = [1];
+    let playerTwoSelection = [3];
+    let totalSelection = [...playerOneSelection, ...playerTwoSelection];
+    
+    if (mark === 'X') {
+      const playerOne =  createPlayerOne('You', mark, playerOneSelection);
+      const roundOne = createPlayerOneRound(1, playerOne);
+      console.log(roundOne); // TODO: delete
+      console.log(playerOne); // TODO: delete
+      const playerTwo =  createPlayerTwo('CPU', 'O', playerTwoSelection);
+      console.log(playerTwo); // TODO: delete
+      updateRemainingSelections(totalSelection);
+    } 
+
+    else if (mark === 'O') {
+      const playerOne =  createPlayerOne('CPU', 'X', playerOneSelection);
+      const roundOne = createPlayerOneRound(1, playerOne);
+      updateRemainingSelections(totalSelection);
+      console.log(roundOne); // TODO: delete
+      console.log(playerOne); // TODO: delete
+      const playerTwo =  createPlayerTwo('You', mark, playerTwoSelection);
+      console.log(playerTwo); // TODO: delete
+    }
+  }
 
 })()
