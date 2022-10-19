@@ -91,4 +91,19 @@ const gameBoard = (function() {
     }
   }
 
+  // 5 - Create the rounds
+  function createPlayerOneRound(roundNumber, playerOne) {
+    return {
+      roundNumber: roundNumber,
+      playerOne: playerOne
+    }
+  }
+
+  function createPlayerTwoRound(roundNumber, playerTwo) {
+    return {
+      roundNumber: roundNumber,
+      playerTwo: playerTwo
+    }
+  }
+
 })()
