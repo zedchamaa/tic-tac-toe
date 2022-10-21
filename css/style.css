@@ -75,3 +75,33 @@ h4 {
     font-size: 1.6rem;
   }
 }
+
+
+
+
+
+
+.container {
+  align-items: center;
+  background: yellow;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 2rem;
+  gap: 5px;
+  height: 300px;
+  justify-content: center;
+  margin: 20vh auto;
+  padding: 5px;
+  text-align: center;
+  width: 300px;
+}
+
+.box {
+  background: dodgerblue;
+  color: #fff;
+  cursor: pointer;
+  height: 90px;
+  width: 90px;
+}
+
