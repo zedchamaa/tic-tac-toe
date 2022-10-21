@@ -4,134 +4,312 @@
 // Create the game board object
 const gameBoard = (function() {
   const gameBoard = {
-    // the board has 9 possible selection slots
+    // the board has 9 possible selection boxes
     board: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    rounds: [
-      {round: 1, player: 'You', mark: 'X', score: 0, playerOneSelection: [1]},
-      {round: 2, player: 'CPU', mark: 'O', score: 0, playerTwoSelection: [2]},
-      {round: 3, player: 'You', mark: 'X', score: 0, playerOneSelection: [1, 3]},
-      {round: 4, player: 'CPU', mark: 'O', score: 0, playerTwoSelection: [2, 4]},
-      {round: 5, player: 'You', mark: 'X', score: 0, playerOneSelection: [1, 3, 5]},
-      {round: 6, player: 'CPU', mark: 'O', score: 0, playerTwoSelection: [2, 4, 6]},
-      {round: 7, player: 'You', mark: 'X', score: 0, playerOneSelection: [1, 3, 5, 7]},
-      {round: 8, player: 'CPU', mark: '0', score: 0, playerTwoSelection: [2, 4, 6, 8]},
-      {round: 9, player: 'You', mark: 'X', score: 0, playerOneSelection: [1, 3, 5, 7, 9]},
-    ],
+    rounds: [],
     usedSelections: [],
-    remainingSelections: []
-    };
+    playerOneSelections: [],
+    playerTwoSelections: [],
+  };
 
-  // 1 - Pick playerOne's mark (X or O) - X always goes first
-  // add click event listener to the X and 0 buttons to see which one has been selected by playerOne (you)
-
-  const mark = 'X'; // TODO: delete
-  // const mark = 'O'; // TODO: delete
-
-  // 2 - Create players
-  // This will create two objects which will be assigned to playerOne and playerTwo and contain the player name, selected mark, score and selections
-
-  // create player one
-  function createPlayerOne(player, mark, playerOneSelection) {
+  // create a round
+  function createRound(round, player, mark, selection) {
     return {
+      round: round,
       player: player,
       mark: mark,
-      playerOneSelection: playerOneSelection
-    }
-  }
-  
-  // create player two
-  function createPlayerTwo(player, mark, playerTwoSelection) {
-    return {
-      player: player,
-      mark: mark,
-      playerTwoSelection: playerTwoSelection
+      selection: selection
     }
   }
 
-  // 3 - Start new game versus CPU
-  // add click event listener to the "New Game (VS CPU)" button to create playerOne and update its values
+  // Main variables
+  const board = gameBoard.board;
+  const rounds = gameBoard.rounds;
+  const usedSelections = gameBoard.usedSelections;
+  const playerOneSelections = gameBoard.playerOneSelections;
+  const playerTwoSelections = gameBoard.playerTwoSelections;
 
-  startGameVsCPu(mark);
-  displayTurn(mark); // show who's turn it is on the UI
 
-  function startGameVsCPu(mark) {
-    const playerOneSelection = [1];
-    const playerTwoSelection = [3];
-    const totalSelection = [...playerOneSelection, ...playerTwoSelection];
-    const playerA = 'You';
-    const playerB = 'CPU';
 
-    if (mark === 'X') {
-      const otherMark = 'O'; // create a variable to hold the other mark
-      const playerOne =  createPlayerOne(playerA, mark, playerOneSelection);
-      const roundOne = createPlayerOneRound(1, playerOne);
-      console.log(roundOne); // TODO: delete
-      console.log(playerOne); // TODO: delete
-      const playerTwo =  createPlayerTwo(playerB, otherMark, playerTwoSelection);
-      console.log(playerTwo); // TODO: delete
-      updateRemainingSelections(totalSelection);
-    }
-     
-    else if (mark === 'O') {
-      const otherMark = 'X';
-      const playerOne =  createPlayerOne(playerB, otherMark, playerOneSelection);
-      const roundOne = createPlayerOneRound(1, playerOne);
-      updateRemainingSelections(totalSelection);
-      console.log(roundOne); // TODO: delete
-      console.log(playerOne); // TODO: delete
-      const playerTwo =  createPlayerTwo(playerA, mark, playerTwoSelection);
-      console.log(playerTwo); // TODO: delete
-    }
-  }
 
-  // 4 - Show who's turn it is now
-  function displayTurn(mark) {
-    if (mark === 'X') {
-      // display X on the UI
+
+  // TODO: delete this section if no longer required
+  // // Get the id value of the clicked box
+  // const container =  document.querySelector('.container');
+  // container.addEventListener('click', getBoxIdValue, {once: true});
+
+  // function getBoxIdValue(event) {
+  //   if (event.target !== event.currentTarget) {
+  //     const clickedBox = event.target.id;
+  //     console.log(clickedBox); // TODO: delete all the console logs when finished using them
+  //     return clickedBox;
+  //   }
+  // }
+
+
+
+
+
+  // Check if player one has won in round five
+  function checkRoundFiveWinStatus(round, playerOneSelections) {
+    if (playerOneSelections.includes(1) && playerOneSelections.includes(2) && playerOneSelections.includes(3) ||
+      playerOneSelections.includes(4) && playerOneSelections.includes(5) && playerOneSelections.includes(6) ||
+      playerOneSelections.includes(7) && playerOneSelections.includes(8) && playerOneSelections.includes(8) ||
+      playerOneSelections.includes(1) && playerOneSelections.includes(4) && playerOneSelections.includes(7) ||
+      playerOneSelections.includes(3) && playerOneSelections.includes(6) && playerOneSelections.includes(9) ||
+      playerOneSelections.includes(2) && playerOneSelections.includes(5) && playerOneSelections.includes(8) ||
+      playerOneSelections.includes(1) && playerOneSelections.includes(5) && playerOneSelections.includes(9) ||
+      playerOneSelections.includes(7) && playerOneSelections.includes(5) && playerOneSelections.includes(3)
+    ) {
+      console.log('Player One has won the game!');
     }
     else {
-      // display Y on the UI
+      round++;
+      createRoundSix(round);
     }
   }
 
-  // 5 - Create the rounds
-  function createPlayerOneRound(roundNumber, playerOne) {
-    return {
-      roundNumber: roundNumber,
-      playerOne: playerOne
+  // Check if player two has won in round six
+  function checkRoundSixWinStatus(round, playerTwoSelections) {
+    if (playerTwoSelections.includes(1) && playerTwoSelections.includes(2) && playerTwoSelections.includes(3) ||
+      playerTwoSelections.includes(4) && playerTwoSelections.includes(5) && playerTwoSelections.includes(6) ||
+      playerTwoSelections.includes(7) && playerTwoSelections.includes(8) && playerTwoSelections.includes(8) ||
+      playerTwoSelections.includes(1) && playerTwoSelections.includes(4) && playerTwoSelections.includes(7) ||
+      playerTwoSelections.includes(3) && playerTwoSelections.includes(6) && playerTwoSelections.includes(9) ||
+      playerTwoSelections.includes(2) && playerTwoSelections.includes(5) && playerTwoSelections.includes(8) ||
+      playerTwoSelections.includes(1) && playerTwoSelections.includes(5) && playerTwoSelections.includes(9) ||
+      playerTwoSelections.includes(7) && playerTwoSelections.includes(5) && playerTwoSelections.includes(3)
+    ) {
+      console.log('Player Two has won the game!');
+    }
+    else {
+      round++;
+      createRoundSeven(round);
     }
   }
 
-  function createPlayerTwoRound(roundNumber, playerTwo) {
-    return {
-      roundNumber: roundNumber,
-      playerTwo: playerTwo
+  // Check if player one has won in round seven
+  function checkRoundSevenWinStatus(round, playerOneSelections) {
+    if (playerOneSelections.includes(1) && playerOneSelections.includes(2) && playerOneSelections.includes(3) ||
+      playerOneSelections.includes(4) && playerOneSelections.includes(5) && playerOneSelections.includes(6) ||
+      playerOneSelections.includes(7) && playerOneSelections.includes(8) && playerOneSelections.includes(8) ||
+      playerOneSelections.includes(1) && playerOneSelections.includes(4) && playerOneSelections.includes(7) ||
+      playerOneSelections.includes(3) && playerOneSelections.includes(6) && playerOneSelections.includes(9) ||
+      playerOneSelections.includes(2) && playerOneSelections.includes(5) && playerOneSelections.includes(8) ||
+      playerOneSelections.includes(1) && playerOneSelections.includes(5) && playerOneSelections.includes(9) ||
+      playerOneSelections.includes(7) && playerOneSelections.includes(5) && playerOneSelections.includes(3)
+    ) {
+      console.log('Player One has won the game!');
+    }
+    else {
+      round++;
+      createRoundEight(round);
     }
   }
 
-  // 6 - Update selection with available spots
-  function updateRemainingSelections(totalSelection) {
+  // Check if player two has won in round eight
+  function checkRoundEightWinStatus(round, playerTwoSelections) {
+    if (playerTwoSelections.includes(1) && playerTwoSelections.includes(2) && playerTwoSelections.includes(3) ||
+      playerTwoSelections.includes(4) && playerTwoSelections.includes(5) && playerTwoSelections.includes(6) ||
+      playerTwoSelections.includes(7) && playerTwoSelections.includes(8) && playerTwoSelections.includes(8) ||
+      playerTwoSelections.includes(1) && playerTwoSelections.includes(4) && playerTwoSelections.includes(7) ||
+      playerTwoSelections.includes(3) && playerTwoSelections.includes(6) && playerTwoSelections.includes(9) ||
+      playerTwoSelections.includes(2) && playerTwoSelections.includes(5) && playerTwoSelections.includes(8) ||
+      playerTwoSelections.includes(1) && playerTwoSelections.includes(5) && playerTwoSelections.includes(9) ||
+      playerTwoSelections.includes(7) && playerTwoSelections.includes(5) && playerTwoSelections.includes(3)
+    ) {
+      console.log('Player Two has won the game!');
+    }
+    else {
+      round++;
+      createRoundNine(round);
+    }
+  }
 
-    console.log(totalSelection); // TODO: delete
+  // Check if player one has won in round nine
+  function checkRoundNineWinStatus(round, playerOneSelections) {
+    if (playerOneSelections.includes(1) && playerOneSelections.includes(2) && playerOneSelections.includes(3) ||
+      playerOneSelections.includes(4) && playerOneSelections.includes(5) && playerOneSelections.includes(6) ||
+      playerOneSelections.includes(7) && playerOneSelections.includes(8) && playerOneSelections.includes(8) ||
+      playerOneSelections.includes(1) && playerOneSelections.includes(4) && playerOneSelections.includes(7) ||
+      playerOneSelections.includes(3) && playerOneSelections.includes(6) && playerOneSelections.includes(9) ||
+      playerOneSelections.includes(2) && playerOneSelections.includes(5) && playerOneSelections.includes(8) ||
+      playerOneSelections.includes(1) && playerOneSelections.includes(5) && playerOneSelections.includes(9) ||
+      playerOneSelections.includes(7) && playerOneSelections.includes(5) && playerOneSelections.includes(3)
+    ) {
+      console.log('Player One has won the game!');
+    }
+    else {
+      console.log('No one won the game, it\'s a tie');
+    }
+  }
 
-    const board = gameBoard.board;
-    console.log(board); // TODO: delete
+  // TODO: remember to delete this object if no longer required
+  const players = {
+    playerOne: 'Zed',
+    playerOneMark: 'X',
+    playerTwo: 'Roger',
+    playerTwoMark: 'O'
+  }
+  
+  // Kick off the game with round 1
+  const round = 1;
+  createRoundOne(round);
+  
+  // Create round 1
+  function createRoundOne(round) {
+    // // find which box was clicked // TODO: continue from here...
+    // const container =  document.querySelector('.container');
+    // container.addEventListener('click', getBoxIdValue, {once: true}) ;
+
     
-    const remainingSelections = board.filter(n => !totalSelection.includes(n));
-    
-    console.log(remainingSelections); // TODO: delete
+
+
+    const playerOneSelection = 1; 
+    const roundOne = createRound(round, players.playerOne, players.playerOneMark, playerOneSelection);
+
+    rounds.push(roundOne);
+    usedSelections.push(playerOneSelection);
+    playerOneSelections.push(playerOneSelection);
+
+    round++;
+    createRoundTwo(round);
   }
 
-  // 7 - When board.length >= 5, check for winners/losers/tie
+  // create round 2
+  function createRoundTwo(round) {
+    // find which box was clicked // TODO: delete these 3 lines if no longer needed
+    // const container =  document.querySelector('.container');
+    // container.addEventListener('click', getBoxIdValue, {once: true}) ;
 
-  // 8 - Update scores
+    const playerTwoSelection = 2;
+    const roundTwo = createRound(round, players.playerTwo, players.playerTwoMark, playerTwoSelection);
+    
+    rounds.push(roundTwo);
+    usedSelections.push(playerTwoSelection);
+    playerTwoSelections.push(playerTwoSelection);
 
-  // 9 - Display notifications
+    round++;
+    createRoundThree(round);
+  }
 
-  // 10 - If playerOne wins, quit game or go to next round
+  // create round 3
+  function createRoundThree(round) {
+    // find which box was clicked // TODO: delete these 3 lines if no longer needed
+    // const container =  document.querySelector('.container');
+    // container.addEventListener('click', getBoxIdValue, {once: true}) ;
 
-  // 11 - If playerOne loses, quot game or go to next round
+    const playerOneSelection = 3;
+    const roundThree = createRound(round, players.playerOne, players.playerOneMark, playerOneSelection);
+    
+    rounds.push(roundThree);
+    usedSelections.push(playerOneSelection);
+    playerOneSelections.push(playerOneSelection);
+    
+    round++;
+    createRoundFour(round);
+  }
 
-  // 12 - Restart game or cancel at anytime when refresh symbol is clicked
+  // create round 4
+  function createRoundFour(round) {
+    // find which box was clicked // TODO: delete these 3 lines if no longer needed
+    // const container =  document.querySelector('.container');
+    // container.addEventListener('click', getBoxIdValue, {once: true}) ;
+
+    const playerTwoSelection = 4;
+    const roundFour = createRound(round, players.playerTwo, players.playerTwoMark, playerTwoSelection);
+    
+    rounds.push(roundFour);
+    usedSelections.push(playerTwoSelection);
+    playerTwoSelections.push(playerTwoSelection);
+   
+    round++;
+    createRoundFive(round);
+  }
+
+  // create round 5
+  function createRoundFive(round) {
+    // find which box was clicked // TODO: delete these 3 lines if no longer needed
+    // const container =  document.querySelector('.container');
+    // container.addEventListener('click', getBoxIdValue, {once: true}) ;
+
+    const playerOneSelection = 5;
+    const roundFive = createRound(round, players.playerOne, players.playerOneMark, playerOneSelection);
+    
+    rounds.push(roundFive);
+    usedSelections.push(playerOneSelection);
+    playerOneSelections.push(playerOneSelection);
+
+    checkRoundFiveWinStatus(round, playerOneSelections);
+  }
+
+  // create round 6
+  function createRoundSix(round) {
+    // // find which box was clicked // TODO: delete these 3 lines if no longer needed
+    // const container =  document.querySelector('.container');
+    // container.addEventListener('click', getBoxIdValue, {once: true}) ;
+
+    const playerTwoSelection = 6;
+    const roundSix = createRound(round, players.playerTwo, players.playerTwoMark, playerTwoSelection);
+    
+    rounds.push(roundSix);
+    usedSelections.push(playerTwoSelection);
+    playerTwoSelections.push(playerTwoSelection);
+
+    checkRoundSixWinStatus(round, playerTwoSelections);
+  }
+
+  // create round 7
+  function createRoundSeven(round) {
+    // // find which box was clicked // TODO: delete these 3 lines if no longer needed
+    // const container =  document.querySelector('.container');
+    // container.addEventListener('click', getBoxIdValue, {once: true}) ;
+
+    const playerOneSelection = 7;
+    const roundSeven = createRound(round, players.playerOne, players.playerOneMark, playerOneSelection);
+    
+    rounds.push(roundSeven);
+    usedSelections.push(playerOneSelection);
+    playerOneSelections.push(playerOneSelection);
+
+    checkRoundSevenWinStatus(round, playerOneSelections);
+  }
+
+  // create round 8
+  function createRoundEight(round) {
+    // // find which box was clicked // TODO: delete these 3 lines if no longer needed
+    // const container =  document.querySelector('.container');
+    // container.addEventListener('click', getBoxIdValue, {once: true}) ;
+
+    const playerTwoSelection = 8;
+    const roundEight = createRound(round, players.playerTwo, players.playerTwoMark, playerTwoSelection);
+    
+    rounds.push(roundEight);
+    usedSelections.push(playerTwoSelection);
+    playerTwoSelections.push(playerTwoSelection);
+
+    checkRoundEightWinStatus(round, playerTwoSelections);
+  }
+
+  // create round 9
+  function createRoundNine(round) {
+    // // find which box was clicked // TODO: delete these 3 lines if no longer needed
+    // const container =  document.querySelector('.container');
+    // container.addEventListener('click', getBoxIdValue, {once: true}) ;
+
+    const playerOneSelection = 9;
+    const roundNine = createRound(round, players.playerOne, players.playerOneMark, playerOneSelection);
+    
+    rounds.push(roundNine);
+    usedSelections.push(playerOneSelection);
+    playerOneSelections.push(playerOneSelection);
+
+    checkRoundNineWinStatus(round, playerOneSelections);
+  } 
+
+
+  console.log(usedSelections);
+  console.log(playerOneSelections);
+  console.log(playerTwoSelections);
 
 })()
