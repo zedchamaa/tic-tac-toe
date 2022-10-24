@@ -152,5 +152,15 @@ function stopPlayersClicking() {
   board.classList.add('no-clicks');
 }
 
+// restart the game
+const restart = document.getElementById('restart');
+restart.addEventListener('click', restartGame);
+
+function restartGame() {
+  selectedBoxes = [];
+  console.log(selectedBoxes); // TODO: delete
+  // TODO: the second step here is to select display none for all the boxes 
+}
+
 
 })()
