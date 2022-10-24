@@ -60,5 +60,15 @@ const gameBoard = (function() {
     }
   }
 
+  // switch player
+  function switchPlayer() {
+    if (currentPlayer === x_Text) {
+      currentPlayer = o_Text;
+    }
+    else if (currentPlayer === o_Text) {
+      currentPlayer = x_Text;
+    }
+  }
+
 
 })()
