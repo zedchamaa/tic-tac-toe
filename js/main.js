@@ -70,5 +70,55 @@ const gameBoard = (function() {
     }
   }
 
+// check for wins, losses or ties
+// any of the following combinations wins the game
+// [0, 1, 2]
+// [3, 4, 5]
+// [6, 7, 8]
+// [0, 3, 6]
+// [1, 4, 7]
+// [2, 5, 8]
+// [0, 4, 8]
+// [2, 4, 6]
+
+function checkWinStatus() {
+
+  if (
+    (x_Selections.includes(0) && x_Selections.includes(1) && x_Selections.includes(2)) ||
+    (x_Selections.includes(3) && x_Selections.includes(4) && x_Selections.includes(5)) ||
+    (x_Selections.includes(6) && x_Selections.includes(7) && x_Selections.includes(8)) ||
+    (x_Selections.includes(0) && x_Selections.includes(3) && x_Selections.includes(6)) ||
+    (x_Selections.includes(1) && x_Selections.includes(4) && x_Selections.includes(7)) ||
+    (x_Selections.includes(2) && x_Selections.includes(5) && x_Selections.includes(8)) ||
+    (x_Selections.includes(0) && x_Selections.includes(4) && x_Selections.includes(8)) ||
+    (x_Selections.includes(2) && x_Selections.includes(4) && x_Selections.includes(6))
+  ) {
+    updateMessagesX();
+    x_Score += 1;
+    updateScores();
+    stopPlayersClicking();
+  }
+  else if (
+    (o_Selections.includes(0) && o_Selections.includes(1) && o_Selections.includes(2)) ||
+    (o_Selections.includes(3) && o_Selections.includes(4) && o_Selections.includes(5)) ||
+    (o_Selections.includes(6) && o_Selections.includes(7) && o_Selections.includes(8)) ||
+    (o_Selections.includes(0) && o_Selections.includes(3) && o_Selections.includes(6)) ||
+    (o_Selections.includes(1) && o_Selections.includes(4) && o_Selections.includes(7)) ||
+    (o_Selections.includes(2) && o_Selections.includes(5) && o_Selections.includes(8)) ||
+    (o_Selections.includes(0) && o_Selections.includes(4) && o_Selections.includes(8)) ||
+    (o_Selections.includes(2) && o_Selections.includes(4) && o_Selections.includes(6))
+  ) {
+    updateMessagesO();
+    o_Score += 1;
+    updateScores();
+    stopPlayersClicking();
+  }
+  else {
+    // FIXME: start from here
+    tiesScore += 1;
+    updateTiesScore(); 
+  }
+}
+
 
 })()
