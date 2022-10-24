@@ -80,7 +80,6 @@ h4 {
 
 
 
-
 .container {
   align-items: center;
   background: yellow;
@@ -89,7 +88,7 @@ h4 {
   flex-wrap: wrap;
   font-size: 2rem;
   gap: 5px;
-  height: 300px;
+  height: 500px;
   justify-content: center;
   margin: 20vh auto;
   padding: 5px;
@@ -104,4 +103,16 @@ h4 {
   height: 90px;
   width: 90px;
 }
+
+.no-clicks {
+  pointer-events: none;
+}
+
+#board {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
 
