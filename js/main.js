@@ -21,5 +21,25 @@ const gameBoard = (function() {
   let tiesScore = 0;
   let currentPlayer = x_Text;
 
+  // find out which box was clicked and update the selected boxes array
+  const boxClicked = (e) => {
+    displayTurn();
+    const box = e.target;
+    const boxId = Number(e.target.id);
+
+    if (currentPlayer === x_Text) x_Selections.push(boxId);
+    if (currentPlayer === o_Text) o_Selections.push(boxId);
+    console.log(x_Selections);
+    console.log(o_Selections);
+
+    selectedBoxes.splice(boxId, 0, boxId);
+    // console.log(selectedBoxes); // TODO: delete
+    markBox(box);
+    checkWinStatus();
+    switchPlayer();
+  }
+
+
+
 
 })()
