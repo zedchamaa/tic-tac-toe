@@ -39,7 +39,10 @@ const gameBoard = (function() {
     switchPlayer();
   }
 
-
+  // add a click event listener for each box
+  boxes.forEach((box) => {
+    box.addEventListener('click', boxClicked, {once: true});
+  }); 
 
 
 })()
