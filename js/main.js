@@ -50,5 +50,15 @@ const gameBoard = (function() {
     if (currentPlayer === o_Text) box.innerText = o_Text;
   }
 
+  // display who's turn is it now
+  function displayTurn() {
+    if (currentPlayer === x_Text) {
+      turn.textContent = 'O Turn';
+    }
+    else if (currentPlayer === o_Text) {
+      turn.textContent = 'X Turn';
+    }
+  }
+
 
 })()
