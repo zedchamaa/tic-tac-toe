@@ -44,5 +44,11 @@ const gameBoard = (function() {
     box.addEventListener('click', boxClicked, {once: true});
   }); 
 
+  // add the player's symbol to the clicked box  
+  function markBox(box) {
+    if (currentPlayer === x_Text) box.innerText = x_Text; 
+    if (currentPlayer === o_Text) box.innerText = o_Text;
+  }
+
 
 })()
