@@ -146,5 +146,11 @@ function updateTiesScore() {
   ties.textContent = `${tiesScore} ties`;
 }
 
+// stop players from clicking until they restart the game
+function stopPlayersClicking() {
+  const board = document.getElementById('board');
+  board.classList.add('no-clicks');
+}
+
 
 })()
