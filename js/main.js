@@ -120,5 +120,17 @@ function checkWinStatus() {
   }
 }
 
+// update messages of X
+function updateMessagesX() {
+  const messages = document.getElementById('messages');
+  messages.textContent = 'X Takes The Round';
+}
+
+// update messages of O
+function updateMessagesO() {
+  const messages = document.getElementById('messages');
+  messages.textContent = 'O Takes The Round';
+}
+
 
 })()
