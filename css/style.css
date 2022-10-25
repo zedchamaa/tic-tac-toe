@@ -109,26 +109,38 @@ h4 {
   }
 }
 
+/* Restart Button */
+
+#restart {
+  align-items: center;
+  background: var(--color-accent-secondary);
+  border-radius: 6px;
+  box-shadow: 0 5px var(--color-accent-primary);
+  display: flex;
+  height: 4rem;
+  justify-content: center;
+  width: 4rem;
+}
+
+.restart__icon {
+  height: 1.538rem;
+  width: 1.538rem;
+}
+
+@media screen and (min-width: 1024px) {
+  #restart {
+    height: 5.2rem;
+    width: 5.2rem;
+  }
+  .restart__icon {
+    height: 2rem;
+    width: 2rem;
+  }
+}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* TODO: remember to delete these */
 
 /* .container {
   align-items: center;
