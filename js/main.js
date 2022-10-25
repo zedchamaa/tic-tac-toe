@@ -2,7 +2,6 @@
 "use strict";
 
 const gameBoard = (function() {
-
   // retrieve the boxes as an array  
   const boxes = Array.from(document.getElementsByClassName('box'));
   
@@ -12,8 +11,8 @@ const gameBoard = (function() {
 
   // define the main variables
   let selectedBoxes = [];
-  const x_Selections = [];
-  const o_Selections = [];
+  let x_Selections = [];
+  let o_Selections = [];
   const o_Text = 'O';
   const x_Text = 'X';
   let x_Score = 0;
@@ -26,23 +25,23 @@ const gameBoard = (function() {
     displayTurn();
     const box = e.target;
     const boxId = Number(e.target.id);
-
     if (currentPlayer === x_Text) x_Selections.push(boxId);
     if (currentPlayer === o_Text) o_Selections.push(boxId);
-    console.log(x_Selections);
-    console.log(o_Selections);
-
     selectedBoxes.splice(boxId, 0, boxId);
-    console.log(selectedBoxes); // TODO: delete
     markBox(box);
     checkWinStatus();
     switchPlayer();
   }
 
-  // add a click event listener for each box
-  boxes.forEach((box) => {
-    box.addEventListener('click', boxClicked, {once: true});
-  }); 
+  // start the game
+  function startGame() {
+    // add a click event listener for each box
+    boxes.forEach((box) => {
+      box.addEventListener('click', boxClicked, {once: true});
+    }); 
+  }
+
+  window.onload = startGame();
 
   // add the player's symbol to the clicked box  
   function markBox(box) {
@@ -116,6 +115,7 @@ function checkWinStatus() {
   else if (selectedBoxes.length === 9) {
     tiesScore += 1;
     updateTiesScore();
+    stopPlayersClicking();
   }
 }
 
@@ -151,15 +151,31 @@ function stopPlayersClicking() {
   board.classList.add('no-clicks');
 }
 
+// allow players to click the boxes when the game restarts
+function allowPlayersToClick() {
+  const board = document.getElementById('board');
+  board.classList.remove('no-clicks');
+}
+
 // restart the game
 const restart = document.getElementById('restart');
 restart.addEventListener('click', restartGame);
 
-function restartGame() {
-  selectedBoxes = [];
-  console.log(selectedBoxes); // TODO: delete
-  // TODO: the second step here is to select display none for all the boxes 
+// reset the messages
+function resetMessages() {
+  const messages = document.getElementById('messages');
+  messages.innerText = null;
 }
 
-
+function restartGame() {
+  selectedBoxes = [];
+  x_Selections = [];
+  o_Selections = [];
+  resetMessages();
+  boxes.forEach((box) => {
+    box.innerText = null;
+  });
+  allowPlayersToClick();
+  startGame();
+}
 })()
