@@ -111,7 +111,7 @@ h4 {
 
 /* Restart Button */
 
-#restart {
+.restart {
   align-items: center;
   background: var(--color-accent-secondary);
   border-radius: 6px;
@@ -128,7 +128,7 @@ h4 {
 }
 
 @media screen and (min-width: 1024px) {
-  #restart {
+  .restart {
     height: 5.2rem;
     width: 5.2rem;
   }
