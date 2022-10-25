@@ -1,13 +1,14 @@
 @import "./normalize.css";
 :root {
-  --color-x-primary: #31C3BD;
-  --color-x-secondary: #65E9E4;
-  --color-o-primary: #F2B137;
-  --color-o-secondary: #FFC860;
-  --color-background-primary: #1A2A33;
-  --color-background-secondary: #1F3641;
   --color-accent-primary: #A8BFC9;
   --color-accent-secondary: #DBE8ED;
+  --color-background-primary: #1A2A33;
+  --color-background-secondary: #1F3641;
+  --color-inner-shadow: #10212A;
+  --color-o-primary: #F2B137;
+  --color-o-secondary: #FFC860;
+  --color-x-primary: #31C3BD;
+  --color-x-secondary: #65E9E4;
 }
 
 *, *::after, *::before {
@@ -75,6 +76,55 @@ h4 {
     font-size: 1.6rem;
   }
 }
+
+
+/* Player Turn */
+
+.player-turn {
+  align-items: center;
+  background: var(--color-background-secondary);
+  border-radius: 6px;
+  box-shadow: 0 8px var(--color-inner-shadow);
+  color: var(--color-accent-primary);
+  display: flex;
+  gap: 8px;
+  height: 4rem;
+  justify-content: center;
+  width: 9.6rem;
+}
+
+.player-turn .player-turn__mark {
+  height: 1.6rem;
+  width: 1.6rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .player-turn {
+    height: 5.2rem;
+    width: 14rem;
+  }
+  .player-turn .player-turn__mark {
+    height: 2rem;
+    width: 2rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
