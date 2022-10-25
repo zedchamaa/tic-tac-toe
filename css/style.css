@@ -38,7 +38,6 @@ body {
 }
 
 h1, h2, h3, h4 {
-  color: var(--color-accent-primary);
   font-weight: 700;
 }
 
@@ -75,6 +74,71 @@ h4 {
   h4 {
     font-size: 1.6rem;
   }
+}
+
+/* Container */
+
+.container {
+  /* TODO: delete background color */
+  background-color: grey;
+  width: 32.8rem;
+  height: 61.6rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 46rem;
+    height: 72.3rem;
+    margin: 0 auto;
+    margin-top: 2rem;
+  } 
+}
+
+/* Messages */
+
+.messages {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5rem;
+}
+
+.messages__first-turn {
+  align-items: center;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 1rem;
+  padding-top: 2rem;
+}
+
+.messages__mark {
+  height: 3rem;
+  width: 3rem;
+}
+
+.main-messages {
+  align-items: center;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.messages__X-mark {
+  color: var(--color-x-primary);
+}
+
+.messages__O-mark {
+  color: var(--color-o-primary);
+}
+
+@media screen and (min-width: 1024px) {
+  .messages__mark {
+    height: 6rem;
+    width: 6rem;
+  }  
 }
 
 
@@ -159,6 +223,10 @@ h4 {
     width: 45.7rem;
   }
 }
+
+/* Messages */
+
+
 
 
 
