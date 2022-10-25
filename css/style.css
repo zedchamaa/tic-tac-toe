@@ -79,12 +79,15 @@ h4 {
 /* Container */
 
 .container {
-  /* TODO: delete background color */
-  background-color: grey;
-  width: 32.8rem;
+  align-items: center;
+    /* TODO: delete background color */
+  /* background-color: grey; */
+  display: flex;
+  flex-direction: column;
   height: 61.6rem;
-  margin: 0 auto;
   margin-top: 1rem;
+  margin: 0 auto;
+  width: 32.8rem;
 }
 
 @media screen and (min-width: 1024px) {
@@ -224,7 +227,54 @@ h4 {
   }
 }
 
-/* Messages */
+/* Game Board */
+
+.board {
+  display: grid;
+  gap: 1.8rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  height: 32.8rem;
+  margin-top: 4rem;
+  width: 32.8rem;
+}
+
+.box {
+  align-items: center;
+  background-color: var(--color-background-secondary);
+  border-radius: 10px;
+  box-shadow: 0 8px var(--color-inner-shadow);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.box__X-mark {
+  content: url(/assets/icon-x.svg);
+  height: 4rem;
+  width: 4rem;
+}
+
+.box__O-mark {
+  content: url(/assets/icon-o.svg);
+  height: 4rem;
+  width: 4rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .board {
+    height: 46rem;
+    width: 46rem;
+  }
+  .box__X-mark {
+    height: 6.4rem;
+    width: 6.4rem;
+  }
+  .box__O-mark {
+    height: 6.4rem;
+    width: 6.4rem;
+  }
+}
 
 
 
