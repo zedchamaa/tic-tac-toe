@@ -33,7 +33,7 @@ const gameBoard = (function() {
     console.log(o_Selections);
 
     selectedBoxes.splice(boxId, 0, boxId);
-    // console.log(selectedBoxes); // TODO: delete
+    console.log(selectedBoxes); // TODO: delete
     markBox(box);
     checkWinStatus();
     switchPlayer();
@@ -113,10 +113,9 @@ function checkWinStatus() {
     updateScores();
     stopPlayersClicking();
   }
-  else {
-    // FIXME: start from here
+  else if (selectedBoxes.length === 9) {
     tiesScore += 1;
-    updateTiesScore(); 
+    updateTiesScore();
   }
 }
 
