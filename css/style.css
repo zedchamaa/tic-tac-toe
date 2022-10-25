@@ -93,7 +93,7 @@ h4 {
   width: 9.6rem;
 }
 
-.player-turn .player-turn__mark {
+.player-turn__mark {
   height: 1.6rem;
   width: 1.6rem;
 }
@@ -103,7 +103,7 @@ h4 {
     height: 5.2rem;
     width: 14rem;
   }
-  .player-turn .player-turn__mark {
+  .player-turn__mark {
     height: 2rem;
     width: 2rem;
   }
@@ -138,6 +138,35 @@ h4 {
   }
 }
 
+/* Game Header */
+
+.game-header {
+  align-items: center;
+  display: flex;
+  height: 4rem;
+  justify-content: space-between;
+  width: 32.8rem;
+}
+
+.game-header__logo {
+  height: 3.2rem;
+  width: 7.197rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .game-header {
+    height: 5.2rem;
+    width: 45.7rem;
+  }
+}
+
+
+
+/* Miscellaneous */
+
+.no-clicks {
+  pointer-events: none;
+}
 
 
 /* TODO: remember to delete these */
