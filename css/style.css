@@ -312,8 +312,48 @@ h4 {
   }
 }
 
+/* Icons */
 
+.icon {
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  height: 6.4rem;
+  justify-content: center;
+  width: 9.6rem;
+}
 
+.score {
+  font-size: 2rem;
+}
+
+.icon--xmark {
+  background-color: var(--color-x-primary);
+  color: var(--color-background-primary);
+}
+
+.icon--ties {
+  background-color: var(--color-accent-primary);
+  color: var(--color-background-primary);
+}
+
+.icon--omark {
+  background-color: var(--color-o-primary);
+  color: var(--color-background-primary);
+}
+
+@media screen and (min-width: 1024px) {
+  .icon {
+    font-size: 1.4rem;
+    height: 7.2rem;
+    width: 14rem;
+  }
+  .score {
+    font-size: 2.4rem;
+  }
+}
 
 
 /* Miscellaneous */
