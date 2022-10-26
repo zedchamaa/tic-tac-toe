@@ -5,10 +5,6 @@ const gameBoard = (function() {
   // retrieve the boxes as an array  
   const boxes = Array.from(document.getElementsByClassName('box'));
   
-  // display a message that X goes first
-  const firstTurnMessage = document.querySelector('.messages__first-turn');
-  // firstTurnMessage.textContent = 'X Goes First'; // FIXME: do this at the end
-
   // define the main variables
   let selectedBoxes = [];
   let x_Selections = [];
@@ -33,11 +29,18 @@ const gameBoard = (function() {
     switchPlayer();
   }
 
+  // hide the first turn message
+  function hideFirstTurnMessage() {
+    const firstTurnMessage = document.querySelector('.messages__first-turn');
+    firstTurnMessage.classList.add('full-hide');
+  }
+
   // start the game
   function startGame() {
     // add a click event listener for each box
     boxes.forEach((box) => {
       box.addEventListener('click', boxClicked, {once: true});
+      box.addEventListener('click', hideFirstTurnMessage);
     }); 
   }
 
@@ -189,7 +192,9 @@ function restartGame() {
   o_Selections = [];
   resetMessages();
   boxes.forEach((box) => {
-    box.innerText = null;
+    let firstChild = box.firstChild.nextSibling;
+    firstChild.classList.remove('box__X-mark'); 
+    firstChild.classList.remove('box__O-mark'); 
   });
   allowPlayersToClick();
   startGame();
