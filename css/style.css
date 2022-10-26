@@ -355,49 +355,25 @@ h4 {
   }
 }
 
+/* Game Footer */
+
+.game-footer {
+  display: flex;
+  height: 6.4rem;
+  justify-content: space-between;
+  margin-top: 2rem;
+  width: 32.8rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .game-footer {
+    height: 7.2rem;
+    width: 45.9rem;
+  }
+}
 
 /* Miscellaneous */
 
 .no-clicks {
   pointer-events: none;
 }
-
-
-/* TODO: remember to delete these */
-
-/* .container {
-  align-items: center;
-  background: yellow;
-  border: 1px solid black;
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 2rem;
-  gap: 5px;
-  height: 500px;
-  justify-content: center;
-  margin: 20vh auto;
-  padding: 5px;
-  text-align: center;
-  width: 300px;
-}
-
-.box {
-  background: dodgerblue;
-  color: #fff;
-  cursor: pointer;
-  height: 90px;
-  width: 90px;
-}
-
-.no-clicks {
-  pointer-events: none;
-}
-
-#board {
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-} */
-
-
