@@ -118,7 +118,7 @@ function checkWinStatus() {
     stopPlayersClicking();
   }
   else if (selectedBoxes.length === 9) {
-    updateTiesMessage();
+    // updateTiesMessage();
     tiesScore += 1;
     updateTiesScore();
     stopPlayersClicking();
@@ -157,13 +157,12 @@ function updateTiesMessage() {
   mainMessages.classList.remove('hide');
 
   const messagesMark = document.querySelector('.messages__mark');
-  messagesMark.remove();
+  messagesMark.src = '../assets/logo.svg';
 
   const markSymbol = document.querySelector('#mark-symbol');
-  markSymbol.classList.remove('messages__X-mark');
-  markSymbol.classList.remove('messages__O-mark');
-  markSymbol.classList.add('messages__ties');
-  markSymbol.innerHTML = '<h1>' + `It's a tie!` + '</h1>';
+  // markSymbol.classList.remove('messages__X-mark');
+  // markSymbol.classList.remove('messages__O-mark');
+  markSymbol.textContent = `It's a tie!`;
 }
 
 // update the scores of X and O
@@ -177,6 +176,7 @@ function updateScores() {
 // update the ties score
 function updateTiesScore() {
   const ties = document.getElementById('ties');
+  console.log(`Ties Score: ${tiesScore}`); // TODO: delete
   ties.textContent = tiesScore;
 }
 
