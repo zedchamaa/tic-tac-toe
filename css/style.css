@@ -80,11 +80,9 @@ h4 {
 
 .container {
   align-items: center;
-    /* TODO: delete background color */
-  /* background-color: grey; */
   display: flex;
   flex-direction: column;
-  height: 61.6rem;
+  height: 100vh;
   margin-top: 1rem;
   margin: 0 auto;
   width: 32.8rem;
@@ -93,7 +91,6 @@ h4 {
 @media screen and (min-width: 1024px) {
   .container {
     width: 46rem;
-    height: 72.3rem;
     margin: 0 auto;
     margin-top: 2rem;
   } 
@@ -143,7 +140,6 @@ h4 {
     width: 6rem;
   }  
 }
-
 
 /* Player Turn */
 
@@ -249,14 +245,46 @@ h4 {
   justify-content: center;
 }
 
+.box__X-winner {
+  align-items: center;
+  background-color: var(--color-x-primary);
+  border-radius: 10px;
+  box-shadow: 0 8px var(--color-inner-shadow);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
 .box__X-mark {
   content: url(/assets/icon-x.svg);
   height: 4rem;
   width: 4rem;
 }
 
+.box__X-mark-winner {
+  content: url(/assets/icon-x-outline.svg);
+  height: 4rem;
+  width: 4rem;
+}
+
+.box__O-winner {
+  align-items: center;
+  background-color: var(--color-o-primary);
+  border-radius: 10px;
+  box-shadow: 0 8px var(--color-inner-shadow);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
 .box__O-mark {
   content: url(/assets/icon-o.svg);
+  height: 4rem;
+  width: 4rem;
+}
+
+.box__O-mark-winner {
+  content: url(/assets/icon-o-outline.svg);
   height: 4rem;
   width: 4rem;
 }
@@ -270,7 +298,15 @@ h4 {
     height: 6.4rem;
     width: 6.4rem;
   }
+  .box__X-mark-winner {
+    height: 6.4rem;
+    width: 6.4rem;
+  }
   .box__O-mark {
+    height: 6.4rem;
+    width: 6.4rem;
+  }
+  .box__O-mark-winner {
     height: 6.4rem;
     width: 6.4rem;
   }
