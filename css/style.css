@@ -161,6 +161,7 @@ h4 {
   gap: 8px;
   height: 4rem;
   justify-content: center;
+  margin-right: 32px;
   width: 9.6rem;
 }
 
@@ -170,6 +171,9 @@ h4 {
 }
 
 @media screen and (min-width: 1024px) {
+  .player-turn {
+    margin-right: 20px;
+  }
   .player-turn {
     height: 5.2rem;
     width: 14rem;
