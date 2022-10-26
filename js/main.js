@@ -32,7 +32,7 @@ const gameBoard = (function() {
   // hide the first turn message
   function hideFirstTurnMessage() {
     const firstTurnMessage = document.querySelector('.messages__first-turn');
-    firstTurnMessage.classList.add('full-hide');
+    firstTurnMessage.classList.add('hide');
   }
 
   // start the game
@@ -118,6 +118,7 @@ function checkWinStatus() {
     stopPlayersClicking();
   }
   else if (selectedBoxes.length === 9) {
+    updateTiesMessage();
     tiesScore += 1;
     updateTiesScore();
     stopPlayersClicking();
@@ -148,6 +149,20 @@ function updateMessagesO() {
   const markSymbol = document.querySelector('#mark-symbol');
   markSymbol.classList.remove('messages__X-mark');
   markSymbol.classList.add('messages__O-mark');
+}
+
+// update the ties message
+function updateTiesMessage() {
+  const mainMessages = document.querySelector('.main-messages');
+  mainMessages.classList.remove('hide');
+
+  const messagesMark = document.querySelector('.messages__mark');
+  messagesMark.src = '../assets/logo.svg';;
+
+  const markSymbol = document.querySelector('#mark-symbol');
+  // markSymbol.classList.remove('messages__X-mark');
+  // markSymbol.classList.remove('messages__O-mark');
+  markSymbol.textContent = `It's a tie!`;
 }
 
 // update the scores of X and O
