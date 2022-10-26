@@ -157,12 +157,13 @@ function updateTiesMessage() {
   mainMessages.classList.remove('hide');
 
   const messagesMark = document.querySelector('.messages__mark');
-  messagesMark.src = '../assets/logo.svg';;
+  messagesMark.remove();
 
   const markSymbol = document.querySelector('#mark-symbol');
-  // markSymbol.classList.remove('messages__X-mark');
-  // markSymbol.classList.remove('messages__O-mark');
-  markSymbol.textContent = `It's a tie!`;
+  markSymbol.classList.remove('messages__X-mark');
+  markSymbol.classList.remove('messages__O-mark');
+  markSymbol.classList.add('messages__ties');
+  markSymbol.innerHTML = '<h1>' + `It's a tie!` + '</h1>';
 }
 
 // update the scores of X and O
