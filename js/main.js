@@ -180,7 +180,7 @@ restart.addEventListener('click', restartGame);
 // reset the messages
 function resetMessages() {
   const messages = document.querySelector('.main-messages');
-  messages.innerText = null;
+  messages.classList.add('hide');
 }
 
 function restartGame() {
