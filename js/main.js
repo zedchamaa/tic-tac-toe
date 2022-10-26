@@ -6,8 +6,8 @@ const gameBoard = (function() {
   const boxes = Array.from(document.getElementsByClassName('box'));
   
   // display a message that X goes first
-  const turn = document.getElementById('turn');
-  turn.textContent = 'X Goes First';
+  const firstTurnMessage = document.querySelector('.messages__first-turn');
+  // firstTurnMessage.textContent = 'X Goes First'; // FIXME: do this at the end
 
   // define the main variables
   let selectedBoxes = [];
@@ -45,17 +45,19 @@ const gameBoard = (function() {
 
   // add the player's symbol to the clicked box  
   function markBox(box) {
-    if (currentPlayer === x_Text) box.innerText = x_Text; 
-    if (currentPlayer === o_Text) box.innerText = o_Text;
+    let firstChild = box.firstChild.nextSibling;
+    if (currentPlayer === x_Text) firstChild.classList.add('box__X-mark'); 
+    if (currentPlayer === o_Text) firstChild.classList.add('box__O-mark'); 
   }
 
   // display who's turn is it now
   function displayTurn() {
+    let playerTurnMark = document.querySelector('.player-turn__mark');
     if (currentPlayer === x_Text) {
-      turn.textContent = 'O Turn';
+      playerTurnMark.src = '../assets/icon-o.svg';
     }
     else if (currentPlayer === o_Text) {
-      turn.textContent = 'X Turn';
+      playerTurnMark.src = '../assets/icon-x.svg';
     }
   }
 
@@ -121,14 +123,28 @@ function checkWinStatus() {
 
 // update messages of X
 function updateMessagesX() {
-  const messages = document.getElementById('messages');
-  messages.textContent = 'X Takes The Round';
+  const mainMessages = document.querySelector('.main-messages');
+  mainMessages.classList.remove('hide');
+
+  const messagesMark = document.querySelector('.messages__mark');
+  messagesMark.src = '../assets/icon-x.svg';
+
+  const markSymbol = document.querySelector('#mark-symbol');
+  markSymbol.classList.remove('messages__O-mark');
+  markSymbol.classList.add('messages__X-mark');
 }
 
 // update messages of O
 function updateMessagesO() {
-  const messages = document.getElementById('messages');
-  messages.textContent = 'O Takes The Round';
+  const mainMessages = document.querySelector('.main-messages');
+  mainMessages.classList.remove('hide');
+
+  const messagesMark = document.querySelector('.messages__mark');
+  messagesMark.src = '../assets/icon-o.svg';
+
+  const markSymbol = document.querySelector('#mark-symbol');
+  markSymbol.classList.remove('messages__X-mark');
+  markSymbol.classList.add('messages__O-mark');
 }
 
 // update the scores of X and O
@@ -147,23 +163,23 @@ function updateTiesScore() {
 
 // stop players from clicking until they restart the game
 function stopPlayersClicking() {
-  const board = document.getElementById('board');
+  const board = document.querySelector('.board');
   board.classList.add('no-clicks');
 }
 
 // allow players to click the boxes when the game restarts
 function allowPlayersToClick() {
-  const board = document.getElementById('board');
+  const board = document.querySelector('.board');
   board.classList.remove('no-clicks');
 }
 
 // restart the game
-const restart = document.getElementById('restart');
+const restart = document.querySelector('.restart');
 restart.addEventListener('click', restartGame);
 
 // reset the messages
 function resetMessages() {
-  const messages = document.getElementById('messages');
+  const messages = document.querySelector('.main-messages');
   messages.innerText = null;
 }
 

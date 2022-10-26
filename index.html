@@ -29,12 +29,14 @@
     <div class="container">
       <div class="messages">
         <div class="messages__first-turn">
-          <img class="messages__mark" src="/assets/icon-x.svg" />
+          <img id="messages__mark" src="/assets/icon-x.svg" />
           <div><h2>Goes First</h2></div>
         </div>
-        <div class="main-messages">
-          <img class="messages__mark" src="/assets/icon-o.svg" />
-          <div class="messages__O-mark"><h1>Takes The Round</h1></div>
+        <div class="main-messages hide">
+          <div><img class="messages__mark" src="/assets/icon-o.svg" /></div>
+          <div id="mark-symbol" class="messages__O-mark">
+            <h1>Takes The Round</h1>
+          </div>
         </div>
       </div>
       <div class="game-header">
@@ -49,13 +51,13 @@
       </div>
       <div class="board">
         <div class="box" id="0">
-          <div class="box__X-mark"></div>
+          <div></div>
         </div>
         <div class="box" id="1">
-          <div class="box__O-mark"></div>
+          <div></div>
         </div>
         <div class="box" id="2">
-          <div class="box__X-mark"></div>
+          <div></div>
         </div>
         <div class="box" id="3">
           <div></div>
@@ -67,27 +69,27 @@
           <div></div>
         </div>
         <div class="box" id="6">
-          <div class="box__O-mark"></div>
+          <div></div>
         </div>
         <div class="box" id="7">
           <div></div>
         </div>
         <div class="box" id="8">
-          <div class="box__O-mark"></div>
+          <div></div>
         </div>
       </div>
       <div class="game-footer">
         <div class="icon icon--xmark">
           <div>X</div>
-          <div class="score">14</div>
+          <div class="score" id="x-score">14</div>
         </div>
         <div class="icon icon--ties">
           <div>TIES</div>
-          <div class="score">32</div>
+          <div class="score" id="ties">32</div>
         </div>
         <div class="icon icon--omark">
           <div>O</div>
-          <div class="score">11</div>
+          <div class="score" id="o-score">11</div>
         </div>
       </div>
       <footer>
