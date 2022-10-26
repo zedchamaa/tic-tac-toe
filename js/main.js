@@ -150,15 +150,15 @@ function updateMessagesO() {
 // update the scores of X and O
 function updateScores() {
   const scoreX = document.getElementById('x-score');
-  scoreX.textContent = `The score of X is ${x_Score}`;
+  scoreX.textContent = x_Score;
   const scoreO = document.getElementById('o-score');
-  scoreO.textContent = `The score of O is ${o_Score}`;
+  scoreO.textContent = o_Score;
 }
 
 // update the ties score
 function updateTiesScore() {
   const ties = document.getElementById('ties');
-  ties.textContent = `${tiesScore} ties`;
+  ties.textContent = tiesScore;
 }
 
 // stop players from clicking until they restart the game
