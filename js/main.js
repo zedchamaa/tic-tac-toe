@@ -97,9 +97,9 @@ function checkWinStatus() {
     (x_Selections.includes(0) && x_Selections.includes(4) && x_Selections.includes(8)) ||
     (x_Selections.includes(2) && x_Selections.includes(4) && x_Selections.includes(6))
   ) {
-    updateMessagesX();
     x_Score += 1;
     updateScores();
+    updateMessagesX();
     stopPlayersClicking();
   }
   else if (
@@ -112,21 +112,24 @@ function checkWinStatus() {
     (o_Selections.includes(0) && o_Selections.includes(4) && o_Selections.includes(8)) ||
     (o_Selections.includes(2) && o_Selections.includes(4) && o_Selections.includes(6))
   ) {
-    updateMessagesO();
     o_Score += 1;
     updateScores();
+    updateMessagesO();
     stopPlayersClicking();
   }
   else if (selectedBoxes.length === 9) {
-    // updateTiesMessage();
     tiesScore += 1;
     updateTiesScore();
+    updateTiesMessage();
     stopPlayersClicking();
   }
 }
 
 // update messages of X
 function updateMessagesX() {
+  const tiesMessages = document.querySelector('.messages__ties');
+  tiesMessages.classList.add('hide');
+
   const mainMessages = document.querySelector('.main-messages');
   mainMessages.classList.remove('hide');
 
@@ -140,6 +143,9 @@ function updateMessagesX() {
 
 // update messages of O
 function updateMessagesO() {
+  const tiesMessages = document.querySelector('.messages__ties');
+  tiesMessages.classList.add('hide');
+
   const mainMessages = document.querySelector('.main-messages');
   mainMessages.classList.remove('hide');
 
@@ -153,16 +159,8 @@ function updateMessagesO() {
 
 // update the ties message
 function updateTiesMessage() {
-  const mainMessages = document.querySelector('.main-messages');
-  mainMessages.classList.remove('hide');
-
-  const messagesMark = document.querySelector('.messages__mark');
-  messagesMark.src = '../assets/logo.svg';
-
-  const markSymbol = document.querySelector('#mark-symbol');
-  // markSymbol.classList.remove('messages__X-mark');
-  // markSymbol.classList.remove('messages__O-mark');
-  markSymbol.textContent = `It's a tie!`;
+  const tiesMessages = document.querySelector('.messages__ties');
+  tiesMessages.classList.remove('hide');
 }
 
 // update the scores of X and O
@@ -176,7 +174,6 @@ function updateScores() {
 // update the ties score
 function updateTiesScore() {
   const ties = document.getElementById('ties');
-  console.log(`Ties Score: ${tiesScore}`); // TODO: delete
   ties.textContent = tiesScore;
 }
 
@@ -200,6 +197,9 @@ restart.addEventListener('click', restartGame);
 function resetMessages() {
   const messages = document.querySelector('.main-messages');
   messages.classList.add('hide');
+
+  const tiesMessages = document.querySelector('.messages__ties');
+  tiesMessages.classList.add('hide');
 }
 
 function restartGame() {

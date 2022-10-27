@@ -130,6 +130,10 @@ h4 {
   justify-content: center;
 }
 
+.messages__ties {
+  color: var(--color-accent-primary);
+}
+
 .messages__X-mark {
   color: var(--color-x-primary);
 }
