@@ -6,6 +6,8 @@
 
 <p>You can view the completed project at https://tic-tac-toe.zedchamaa.com/</p>
 
+<img width="100%" src="https://github.com/zedchamaa/tic-tac-toe/blob/main/assets/tic-tac-toe-game-zedchamaa.png" />
+
 <h2>Assignment</h2>
 
 <p><strong>1.</strong> Set up your project with HTML, CSS and Javascript files and get the Git repo all set up.</p>
