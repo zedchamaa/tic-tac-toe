@@ -9,6 +9,8 @@ const gameBoard = (function() {
   let selectedBoxes = [];
   let x_Selections = [];
   let o_Selections = [];
+  let x_WinningSelections = [];
+  let o_WinningSelections = []; 
   const o_Text = 'O';
   const x_Text = 'X';
   let x_Score = 0;
@@ -75,7 +77,7 @@ const gameBoard = (function() {
   }
 
 // check for wins, losses or ties
-// any of the following combinations wins the game
+// any of the following combinations wins the round
 // [0, 1, 2]
 // [3, 4, 5]
 // [6, 7, 8]
@@ -101,6 +103,7 @@ function checkWinStatus() {
     updateScores();
     updateMessagesX();
     stopPlayersClicking();
+    winningCombinationsX(x_Selections);
   }
   else if (
     (o_Selections.includes(0) && o_Selections.includes(1) && o_Selections.includes(2)) ||
@@ -116,6 +119,7 @@ function checkWinStatus() {
     updateScores();
     updateMessagesO();
     stopPlayersClicking();
+    winningCombinationsO(o_Selections);
   }
   else if (selectedBoxes.length === 9) {
     tiesScore += 1;
@@ -189,6 +193,68 @@ function allowPlayersToClick() {
   board.classList.remove('no-clicks');
 }
 
+// target winning X combinations and update style
+function updateWinningStylesX(x_WinningSelections) {
+  let targetId;
+
+  for (let i = 0; i < x_WinningSelections.length; i++) {
+    targetId = x_WinningSelections[i];
+    const target = document.getElementById(targetId);
+    target.classList.add('box__X-winner');
+
+    let firstChild = target.firstChild.nextSibling;
+    firstChild.classList.remove('box__X-mark'); 
+    firstChild.classList.add('box__X-mark-winner'); 
+  }
+}
+
+// target winning O combinations and update style
+function updateWinningStylesO(o_WinningSelections) {
+  let targetId;
+  
+  for (let i = 0; i < o_WinningSelections.length; i++) {
+    targetId = o_WinningSelections[i];
+    const target = document.getElementById(targetId);
+    target.classList.add('box__O-winner');
+
+    let firstChild = target.firstChild.nextSibling;
+    firstChild.classList.remove('box__O-mark'); 
+    firstChild.classList.add('box__O-mark-winner'); 
+  }
+}
+
+// find out the winning combinations of X
+function winningCombinationsX(x_Selections) {
+  if ((x_Selections.includes(0) && x_Selections.includes(1) && x_Selections.includes(2))) x_WinningSelections.push(0, 1, 2);
+  if ((x_Selections.includes(3) && x_Selections.includes(4) && x_Selections.includes(5))) x_WinningSelections.push(3, 4, 5);
+  if ((x_Selections.includes(6) && x_Selections.includes(7) && x_Selections.includes(8))) x_WinningSelections.push(6, 7, 8);
+  if ((x_Selections.includes(0) && x_Selections.includes(3) && x_Selections.includes(6))) x_WinningSelections.push(0, 3, 6);
+  if ((x_Selections.includes(1) && x_Selections.includes(4) && x_Selections.includes(7))) x_WinningSelections.push(1, 4, 7);
+  if ((x_Selections.includes(2) && x_Selections.includes(5) && x_Selections.includes(8))) x_WinningSelections.push(2, 5, 8);
+  if ((x_Selections.includes(0) && x_Selections.includes(4) && x_Selections.includes(8))) x_WinningSelections.push(0, 4, 8);
+  if ((x_Selections.includes(2) && x_Selections.includes(4) && x_Selections.includes(6))) x_WinningSelections.push(2, 4, 6);
+  updateWinningStylesX(x_WinningSelections);
+}
+
+// find out the winning combinations of O
+function winningCombinationsO(o_Selections) {
+  if ((o_Selections.includes(0) && o_Selections.includes(1) && o_Selections.includes(2))) o_WinningSelections.push(0, 1, 2);
+  if ((o_Selections.includes(3) && o_Selections.includes(4) && o_Selections.includes(5))) o_WinningSelections.push(3, 4, 5);
+  if ((o_Selections.includes(6) && o_Selections.includes(7) && o_Selections.includes(8))) o_WinningSelections.push(6, 7, 8);
+  if ((o_Selections.includes(0) && o_Selections.includes(3) && o_Selections.includes(6))) o_WinningSelections.push(0, 3, 6);
+  if ((o_Selections.includes(1) && o_Selections.includes(4) && o_Selections.includes(7))) o_WinningSelections.push(1, 4, 7);
+  if ((o_Selections.includes(2) && o_Selections.includes(5) && o_Selections.includes(8))) o_WinningSelections.push(2, 5, 8);
+  if ((o_Selections.includes(0) && o_Selections.includes(4) && o_Selections.includes(8))) o_WinningSelections.push(0, 4, 8);
+  if ((o_Selections.includes(2) && o_Selections.includes(4) && o_Selections.includes(6))) o_WinningSelections.push(2, 4, 6);
+  updateWinningStylesO(o_WinningSelections);
+}
+
+// reset winning combinations
+function resetWinningCombinations() {
+  x_WinningSelections = [];
+  o_WinningSelections = [];
+}
+
 // restart the game
 const restart = document.querySelector('.restart');
 restart.addEventListener('click', restartGame);
@@ -207,10 +273,17 @@ function restartGame() {
   x_Selections = [];
   o_Selections = [];
   resetMessages();
+  resetWinningCombinations();
   boxes.forEach((box) => {
     let firstChild = box.firstChild.nextSibling;
     firstChild.classList.remove('box__X-mark'); 
     firstChild.classList.remove('box__O-mark'); 
+    firstChild.classList.remove('box__X-mark-winner'); 
+    firstChild.classList.remove('box__O-mark-winner'); 
+  });
+  boxes.forEach((box) => {
+    box.classList.remove('box__X-winner'); 
+    box.classList.remove('box__O-winner'); 
   });
   allowPlayersToClick();
   startGame();
