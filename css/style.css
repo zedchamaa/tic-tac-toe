@@ -82,7 +82,7 @@ h4 {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 95vh;
+  height: 100vh;
   margin-top: 1rem;
   margin: 0 auto;
   width: 32.8rem;
@@ -90,8 +90,10 @@ h4 {
 
 @media screen and (min-width: 1024px) {
   .container {
+    height: 95vh;
     margin-top: 2rem;
     margin: 0 auto;
+    min-height: 90rem;
     width: 46rem;
   } 
 }
